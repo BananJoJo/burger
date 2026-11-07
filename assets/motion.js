@@ -56,10 +56,10 @@
  addEventListener('resize',scheduleRetreat);
  mobile.addEventListener('change',scheduleRetreat);
  reduced.addEventListener('change',scheduleRetreat);
- button.addEventListener('click',scheduleRetreat);
+ button?.addEventListener('click',scheduleRetreat);
  updateRetreat();
  const updateMotion = () => { burger.style.animationPlayState = paused || !onScreen || document.hidden || reduced.matches ? 'paused' : 'running'; };
- button.addEventListener('click', () => {paused = !paused;button.setAttribute('aria-pressed', String(paused));button.textContent=paused?'Продолжить анимацию':'Приостановить анимацию';updateMotion();});
+ button?.addEventListener('click', () => {paused = !paused;button.setAttribute('aria-pressed', String(paused));button.textContent=paused?'Продолжить анимацию':'Приостановить анимацию';updateMotion();});
  document.addEventListener('visibilitychange', updateMotion);
  new IntersectionObserver(entries => {onScreen=entries[0].isIntersecting;updateMotion();}).observe(burger);
  const animations = new Set();

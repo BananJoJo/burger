@@ -27,6 +27,7 @@ const updated = html.replace('</head>','<link rel="stylesheet" href="./assets/st
  .replace('<aside><h2>Наше меню</h2>', '<aside><h2>Что попробуем?</h2>')
  .replace('<div class="photo"><img src="../исходники/5438536913506739038_119.jpg" alt="Гиро на тарелке: фотография из предоставленных материалов"></div><div class="photo-caption">Фотография из материалов заведения</div>', '<div class="photo burger-scene"><img class="hero-burger" src="/preview/assets/burger-hero.png" alt="Декоративная объёмная иллюстрация бургера"><span class="burger-shadow" aria-hidden="true"></span><button class="motion-toggle" type="button" aria-pressed="false">Приостановить анимацию</button></div><div class="photo-caption">Декоративная иллюстрация</div>')
  .replace('src="/preview/assets/burger-hero.png"', 'src="./assets/burger.jpg"')
+ .replace('<button class="motion-toggle" type="button" aria-pressed="false">Приостановить анимацию</button>', '')
  .replace('</body>', '<script src="./assets/motion.js"></script></body>');
 fs.writeFileSync(path.join(root,'index.html'),updated);
 console.log(JSON.stringify({categories:menu.length,items:menu.reduce((n,s)=>n+s.items.length,0),output:path.join(root,'index.html')}));
