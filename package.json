@@ -1,0 +1,12 @@
+{
+  "name": "sweet-sushi-menu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Адаптивное демонстрационное меню Sweet Sushi",
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "start": "node scripts/server.cjs",
+    "check": "node scripts/check.cjs"
+  },
+  "engines": { "node": ">=18" }
+}
