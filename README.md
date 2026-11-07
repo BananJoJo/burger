@@ -19,6 +19,8 @@ node scripts/server.cjs
 - Оформление и адаптивность: `assets/styles.css`.
 - Появление блоков и мобильная анимация: `assets/motion.js`.
 - Изображение первого экрана: `assets/burger.jpg`.
+- Локальный шрифт названий блюд: Oswald, `assets/fonts/oswald.ttf`; лицензия SIL OFL в той же папке. Источник — Google Fonts.
+- Иконки категорий: Lucide, `assets/icons/`; лицензия сохранена в `assets/icons/LICENSE-LUCIDE.txt`.
 
 После изменения меню или шаблона:
 

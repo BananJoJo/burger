@@ -11,4 +11,6 @@ assert.equal((html.match(/class="item"/g)||[]).length,68,'Expected all 68 menu i
 assert.equal((html.match(/class="menu-section"/g)||[]).length,10,'Expected all 10 categories');
 assert(!/127\.0\.0\.1|C:\\Users|\/preview\//.test(html),'Local-only path in published HTML');
 assert(!html.includes('three.module')&&!html.includes('burger-hero.png'),'Unused/old burger asset');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+for(const [,ref] of css.matchAll(/url\(['"]?([^'"\)]+)['"]?\)/g))assert(fs.existsSync(path.resolve(root,'assets',ref)),`Missing CSS resource: ${ref}`);
 console.log(`OK: 68 items, 10 categories, ${refs.length} local asset references; relative deployment paths`);
