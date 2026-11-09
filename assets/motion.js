@@ -67,8 +67,9 @@
  const reveal = (el, delay=0) => {
   if(reduced.matches || !el.animate) return;
   activeReveals.get(el)?.cancel();
-  const stableTarget=el.matches('.menu-section h2,aside');
-  const anim=el.animate([{opacity:0,transform:stableTarget?'none':'translateY(38px)',filter:'blur(3px)'},{opacity:1,transform:stableTarget?'none':'translateY(0)',filter:'blur(0)'}],{duration:850,delay,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});
+  const stableTarget=el.matches('.menu-section h2,aside,.item-order');
+  const imageScene=el.matches('.hero>div:nth-child(2)');
+  const anim=el.animate([{opacity:0,transform:stableTarget?'none':'translateY(38px)',filter:imageScene?'none':'blur(3px)'},{opacity:1,transform:stableTarget?'none':'translateY(0)',filter:imageScene?'none':'blur(0)'}],{duration:850,delay,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});
   activeReveals.set(el,anim);
   animations.add(anim);anim.finished.then(()=>animations.delete(anim)).catch(()=>animations.delete(anim));
  };

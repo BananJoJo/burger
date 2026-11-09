@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node scripts/build.cjs",
     "start": "node scripts/server.cjs",
-    "check": "node scripts/check.cjs"
+    "check": "node scripts/check.cjs",
+    "test": "node scripts/test-cart.cjs"
   },
   "engines": { "node": ">=18" }
 }

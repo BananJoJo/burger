@@ -111,3 +111,45 @@ a:focus-visible,button:focus-visible{outline:2px solid #ff9b80;outline-offset:5p
  .photo.burger-scene{height:auto;aspect-ratio:1.18}
  .photo .hero-burger{left:0;width:100%;height:100%;object-position:center 47%;border-radius:0}
 }
+
+/* Keep the JPG blending against its actual backdrop during the entrance fade. */
+.hero>div:nth-child(2){background:#111110}
+@media(max-width:700px){.hero>div:nth-child(2){background:#000}}
+.menu-layout{border-top:1px solid #804331;background:radial-gradient(ellipse 75% 240px at 25% 0,#51271e55,transparent),#181715;box-shadow:0 -18px 65px #bc38280c}
+aside{border:1px solid #714332;border-radius:22px;padding:20px 16px;background:linear-gradient(145deg,#35251e,#211d18 65%);box-shadow:0 12px 30px #0003}
+.menu-kicker{display:flex;align-items:center;gap:8px;color:#ffaf7e;font:700 9px/1.5 Arial,sans-serif;letter-spacing:1px;margin-bottom:13px}
+.menu-kicker svg{width:25px;height:30px;flex-shrink:0;color:#ff854b;filter:drop-shadow(0 0 7px #ed542966);animation:menu-ember 2.8s ease-in-out infinite}
+aside h2{font-size:29px;margin-bottom:17px}.category-count{font-variant-numeric:tabular-nums}
+@keyframes menu-ember{50%{opacity:.72;filter:drop-shadow(0 0 11px #ed5429aa)}}
+@media(max-width:700px){aside{padding:20px 15px;margin-bottom:32px;border-radius:20px}.menu-kicker{font-size:10px}.menu-intro{border-bottom:1px solid #75503b;margin-bottom:9px}aside h2{font-size:33px}}
+@media(prefers-reduced-motion:reduce){.menu-kicker svg{animation:none}}
+
+nav{gap:6px}
+nav a{border-radius:12px;border:1px solid transparent;box-shadow:none;transition:color .2s,background .2s,border-color .2s}
+nav a.active{border:1px solid #925039;border-radius:12px;box-shadow:none;background:#482a20;color:#ffb08e}
+nav a:not(.active):hover{background:transparent;border-color:transparent;color:#f5c9a8}
+@media(hover:hover){nav a:not(.active):hover{background:#39291e;border-color:#73503a}}
+@media(max-width:700px){nav{gap:6px 10px}nav a{padding:12px 9px;min-height:62px;border-radius:12px}nav a.active{box-shadow:none;border:1px solid #925039;background:#482a20}}
+.menu-kicker{font:500 19px/1.2 Oswald,sans-serif;letter-spacing:.2px;color:#d5aa88;margin-bottom:10px}
+.hero .cta{background:#f0e5d0;color:#35261c;border:1px solid #ffefcf;border-radius:999px;padding:14px 25px;min-height:56px;box-shadow:none;gap:0;transition:background .2s,transform .2s}
+.hero .cta:hover{background:#fff3df;transform:translateY(-2px);box-shadow:none}.hero .cta:active{transform:translateY(1px)}
+.hero .cta .cta-label{font:500 24px/1.1 Oswald,sans-serif;color:inherit}
+@media(prefers-reduced-motion:reduce){nav a,.hero .cta{transition:none}}
+
+/* Hero CTA: compact, centered, red. */
+.hero .cta{display:inline-flex;align-items:center;justify-content:center;width:176px;min-height:52px;padding:13px 18px;border:1px solid #f45c47;border-radius:13px;background:#dd352b;color:#fff3e5;box-shadow:0 8px 22px #b52a1c22;gap:0;text-align:center;line-height:1}
+.hero .cta .cta-label{display:block;width:100%;margin:0;text-align:center;font:500 22px/1.15 Oswald,sans-serif;letter-spacing:.1px}
+.hero .cta:hover{background:#ec4434;box-shadow:0 10px 26px #b52a1c33;transform:translateY(-2px)}
+.hero .cta:active{background:#c72c24;transform:translateY(1px);box-shadow:none}
+@media(max-width:440px){.hero .cta{width:164px;min-height:50px;padding:12px 16px}.hero .cta .cta-label{font-size:21px}}
+
+/* Blend the complete animated group, so opacity/transform cannot expose the JPG rectangle. */
+.hero>div:nth-child(2){background:#000;mix-blend-mode:screen}
+.photo .hero-burger{mix-blend-mode:normal;border-radius:0}
+.burger-shadow{display:none!important}
+.hero .cta{width:202px;min-height:56px;border-radius:10px;padding:12px 22px;background:#e3382c;box-shadow:none}
+.hero .cta .cta-label{font:600 27px/1.1 Oswald,sans-serif;letter-spacing:-.3px}
+.hero h1 span{animation:appetite-sway 6s ease-in-out infinite;transform-origin:left center}
+@keyframes appetite-sway{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-3px)}}
+@media(max-width:440px){.hero .cta{width:174px;min-height:52px;padding:12px 17px}.hero .cta .cta-label{font-size:24px}}
+@media(prefers-reduced-motion:reduce){.hero h1 span{animation:none}}
