@@ -31,6 +31,7 @@ const updated = html.replace('</head>','<link rel="stylesheet" href="./assets/st
  .replace('<button class="motion-toggle" type="button" aria-pressed="false">Приостановить анимацию</button>', '')
  .replace(/<div class="preview-notice">[\s\S]*?<\/div>/, '')
  .replace(/<span class="menu-kicker">[\s\S]*?<\/span>/, '<span class="menu-kicker">Выбирайте по настроению</span>')
+ .replace('<head>', '<head><script>history.scrollRestoration="manual";if(location.hash)history.replaceState(null,"",location.pathname+location.search);scrollTo({top:0,behavior:"instant"});addEventListener("pageshow",()=>scrollTo({top:0,behavior:"instant"}));</script>')
  .replace('</head>',cart.head+'</head>')
  .replace('</header>',cart.header+'</header>')
  .replace('</body>', '<script src="./assets/motion.js"></script>'+cart.body+'</body>');

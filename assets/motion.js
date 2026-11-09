@@ -33,7 +33,7 @@
   history.replaceState(null,'',hash);
   jump(hash);
  }));
- if(location.hash) requestAnimationFrame(()=>jump(location.hash,false));
+ // Initial navigation always starts on the cover; in-page category clicks still animate.
  const burger = document.querySelector('.hero-burger');
  const button = document.querySelector('.motion-toggle');
  let paused = false, onScreen = true;

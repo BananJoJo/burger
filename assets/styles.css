@@ -153,3 +153,19 @@ nav a:not(.active):hover{background:transparent;border-color:transparent;color:#
 @keyframes appetite-sway{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(-1deg) translateY(-3px)}}
 @media(max-width:440px){.hero .cta{width:174px;min-height:52px;padding:12px 17px}.hero .cta .cta-label{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.hero h1 span{animation:none}}
+
+/* Warm light menu, retaining the dark photographic cover. */
+.menu-layout{max-width:none;background:#f5eddf;color:#30251e;border-top:1px solid #e4d0b8;border-radius:32px 32px 0 0;box-shadow:none;padding-left:max(6%,calc((100% - 1268px)/2));padding-right:max(6%,calc((100% - 1268px)/2))}
+.menu-layout aside{background:#fffaF2;border:1px solid #dfcab1;box-shadow:0 12px 30px #67401a09}
+.menu-layout aside h2,.menu-layout .menu-section h2,.menu-layout .item h3{color:#30251e}
+.menu-layout .menu-kicker{color:#896247}.menu-intro{border-color:#e0ccb3}
+.menu-layout nav a{color:#67513f;border-color:transparent}
+.menu-layout nav a.active{background:#f9dfcf;color:#ad2b23;border-color:#e6ab88}
+.menu-layout nav .category-count{color:#896c52}
+.menu-layout nav .category-icon{filter:invert(34%) sepia(19%) saturate(800%) hue-rotate(345deg);opacity:.9}
+.menu-layout nav a.active .category-icon{filter:invert(24%) sepia(73%) saturate(2000%) hue-rotate(344deg)}
+@media(hover:hover){.menu-layout nav a:not(.active):hover{background:#f4e8d8;border-color:#e4c9a8;color:#30251e}}
+.menu-layout .item{border-color:#ddcbb5}.menu-layout .item h3{font-weight:500}.menu-layout .item p{color:#786553}.menu-layout .item:hover h3{color:#aa3025}
+.menu-layout .note{color:#786553}.menu-layout .item-unavailable{color:#876e55}
+footer{background:#eee2d0;border-top-color:#dbc7ad;color:#786553}
+@media(max-width:700px){.menu-layout{padding-left:5%;padding-right:5%}}

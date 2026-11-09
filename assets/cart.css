@@ -114,3 +114,18 @@ button:focus-visible,.whatsapp-order:focus-visible,.cart-message:focus-visible{o
 .payment-options input:focus-visible+span{outline:2px solid #ba3b29;outline-offset:3px}
 @media(max-width:370px){.payment-options span{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.payment-options span{transition:none}}
+
+/* Light menu controls and basket. */
+.menu-layout .menu-remove{background:#f5e5d3;border-color:#d6b99a;color:#795139}
+.menu-layout .menu-remove:hover{background:#ead2b8;color:#492f20}
+.menu-layout .item .price-unresolved{color:#805b3e}
+.menu-layout .item-order.has-product .add-to-cart{background:#a93828;color:#fff}
+.cart-dialog{background:#f5eddf;border-color:#dcc5a7;color:#30251e}
+.cart-dialog-header{background:radial-gradient(ellipse at right top,#efc9a850,transparent 70%),#f5eddf}
+.cart-eyebrow{color:#88684c}.cart-close{background:#eadbc6;border-color:#cbb292;color:#61452f}
+.cart-content{scrollbar-color:#c6a581 #f5eddf}.cart-list-caption{color:#896c52}.cart-list-caption b{color:#5d402b}
+.cart-line{background:#fffaF2;border-color:#e0ccb3!important;box-shadow:0 4px 12px #8b5e2905}
+.cart-line h3{color:#30251e}.cart-line-info p{color:#786553}.cart-line-total{color:#af3025}
+.cart-line-controls{background:#f2e6d5;border-color:#dcc5a7}.quantity-button{color:#67472f}.quantity-button:hover{background:#e9d1b4}
+.cart-remove{background:#f6e8d7;border-color:#dcc5a7;color:#805439}.cart-remove:hover{background:#ecd3b6;color:#4e3120}
+.cart-empty{color:#786553}.cart-footer{border-top:1px solid #dcc5a7}
