@@ -20,3 +20,8 @@ const restored=core.restore(JSON.parse(JSON.stringify(cart)),catalog);assert.equ
 assert.equal(core.total(restored,catalog.map(p=>p.id===beef.id?{...p,price:300}:p)),870,'Restored cart must use current catalog prices');
 assert.equal(core.message({},catalog),'');assert.equal(catalog.filter(p=>p.price!==null).length,63);
 console.log('PASS: variants, quantities, removal, totals, message/URL, corrupted storage, current prices, 63 orderable products and 5 unresolved drinks');
+assert(core.message(cart,catalog,'cash').includes('Оплата: Наличными'));
+assert(core.message(cart,catalog,'transfer').includes('Оплата: Перевод на карту'));
+assert(!core.message(cart,catalog,'invalid').includes('Оплата:'));
+assert.equal(core.message({},catalog,'cash'),'');
+console.log('PASS: payment labels and invalid/empty cases');

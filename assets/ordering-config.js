@@ -1,2 +1,2 @@
-// WhatsApp destination in international format, digits only.
-window.MenuOrderingConfig = { whatsappNumber: '79635933747', isTest: true };
+// Restaurant WhatsApp destination in international format.
+window.MenuOrderingConfig = { whatsappNumber: '79389893446', isTest: false };

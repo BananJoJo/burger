@@ -18,10 +18,10 @@
  function lines(cart,catalog){const valid=restore(cart,catalog);return catalog.filter(p=>valid[p.id]).map(p=>({...p,quantity:valid[p.id],subtotal:p.price*valid[p.id]}));}
  function total(cart,catalog){return lines(cart,catalog).reduce((sum,p)=>sum+p.subtotal,0);}
  function count(cart,catalog){return lines(cart,catalog).reduce((sum,p)=>sum+p.quantity,0);}
- function message(cart,catalog){
+ function message(cart,catalog,payment){
   const entries=lines(cart,catalog);
   if(!entries.length)return '';
-  return ['Здравствуйте! Хочу оформить заказ в Sweet Sushi.','',...entries.map((p,i)=>`${i+1}. ${p.name}${p.description&&!p.name.toLowerCase().includes(p.description.toLowerCase())?' — '+p.description:''}: ${p.quantity} шт. × ${money(p.price)} = ${money(p.subtotal)}`),'',`Итого по меню: ${money(total(cart,catalog))}`,'Подтвердите, пожалуйста, наличие, итоговую сумму и условия получения заказа.'].join('\n');
+  return ['Ассаляму алейкум! 👋','Хочу сделать заказ в *Sweet Sushi* 🍔','','*Мой заказ:*','',...entries.flatMap((p,i)=>[`${i+1}. *${p.name}${p.description&&!p.name.toLowerCase().includes(p.description.toLowerCase())?' — '+p.description:''}*`,`   ${p.quantity} шт. · ${money(p.price)} за шт. — *${money(p.subtotal)}*`,'']),`🧾 *Сумма по меню: ${money(total(cart,catalog))}*`,...(['cash','transfer'].includes(payment)?['💳 *Оплата: '+(payment==='cash'?'Наличными':'Перевод на карту')+'*']:[]),'','Подтвердите, пожалуйста, заказ и итоговую стоимость. Подскажите, когда будет готово и как можно получить заказ. Спасибо! 😊'].join('\n');
  }
  function whatsappUrl(number,text){
   const phone=String(number||'').replace(/[\s()+-]/g,'');
