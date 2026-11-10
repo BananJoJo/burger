@@ -150,3 +150,16 @@ button:focus-visible,.whatsapp-order:focus-visible,.cart-message:focus-visible{o
 /* Clear order controls and the confirmed village delivery offer. */
 .cart-content::before{content:"";display:block;border-top:2px solid #df342a;margin-bottom:14px}
 .cart-delivery-note{margin:18px 0 24px;padding:18px;background:#ae3026;border:1px solid #97291f;border-radius:16px;color:#fff8ed}.delivery-highlight{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.cart-delivery-note strong{font:500 27px/1.15 Oswald,sans-serif}.delivery-threshold{display:inline-block;padding:7px 12px;border-radius:10px;background:#fff0d4;color:#8b251d;font:600 25px/1.1 Oswald,sans-serif;white-space:nowrap}.cart-delivery-note p{margin:10px 0 5px;font-size:15px;line-height:1.45}.cart-delivery-note small{display:block;font-size:12px;line-height:1.5;color:#ffe3cf}
+
+/* Cold drinks: warm drink cards matching the menu palette. */
+.menu-layout #menu-9 .item[data-drink]{background:#dcc0a1;border-color:#c09c79;padding:20px;border-radius:19px}
+.menu-layout #menu-9 .item[data-drink] h3{display:flex;align-items:center;gap:11px;color:#533a28;margin-bottom:18px}
+.menu-layout #menu-9 .item[data-drink] h3::before{content:'';display:block;flex:0 0 38px;width:38px;height:42px;border-radius:11px;background:#cba783 url('./icons/cup-soda.svg') center/25px 25px no-repeat}
+#menu-9 .drink-variant{background:#f2e2cd;border-color:#d1ae88;border-radius:13px;padding:12px}
+#menu-9 .drink-volume{display:flex;justify-content:flex-start;padding:0 0 10px;margin-bottom:9px;background:transparent;color:#533a28;border-radius:0;border-bottom:1px solid #d7ba98;min-height:39px;font-size:25px}
+#menu-9 .drink-variant .add-to-cart{font:500 18px/1.2 Oswald,'Arial Narrow',sans-serif;min-height:45px}
+@media(max-width:440px){.menu-layout #menu-9 .item[data-drink]{padding:16px 12px}#menu-9 .drink-variant{padding:11px 9px}.menu-layout #menu-9 .item[data-drink] h3{font-size:26px}}
+
+/* Price typography follows the menu headings rather than the default UI font. */
+.menu-layout .item .item-order .price-add{font-family:Oswald,'Arial Narrow',sans-serif;font-size:22px;font-weight:600;line-height:1.15;font-variant-numeric:tabular-nums;letter-spacing:.25px}
+.menu-layout .drink-variant .item-order .price-add{font-size:27px;letter-spacing:.1px}

@@ -48,8 +48,8 @@ const versioned=bootstrapped.replace(/(src|href)="(\.\/assets\/[^"?]+\.(?:css|js
 const {markers,renderStatic}=require('../server/static-menu.cjs');
 const publishedFile=path.join(root,'assets/menu-data.json');
 let finalHTML=fs.existsSync(publishedFile)?renderStatic(versioned,JSON.parse(fs.readFileSync(publishedFile,'utf8'))).html:markers(versioned);
-// Temporary visual sketch: reuse the hero photo on the first burger only.
-if(!fs.existsSync(publishedFile))finalHTML=finalHTML.replace('<article class="item">','<article class="item" data-burger-draft="true"><figure class="burger-card-photo"><img src="./assets/burger.jpg" alt="Пример оформления фотографии бургера" loading="lazy" decoding="async" width="640" height="480"><figcaption>Фото для примера</figcaption></figure>');
+// Temporary layout trial: show an example photo on the first burger only.
+if(!fs.existsSync(publishedFile))finalHTML=finalHTML.replace(/(<section class="menu-section" id="menu-0">)([\s\S]*?)(<\/section>)/,(_,open,body,close)=>open+body.replaceAll('<article class="item">','<article class="item" data-burger-draft="true">').replace('<article class="item" data-burger-draft="true">','<article class="item" data-burger-draft="true"><figure class="burger-card-photo"><img src="./assets/burger.jpg" alt="Тестовое фото для примера оформления" loading="lazy" decoding="async" width="400" height="400"><figcaption>Пример фото</figcaption></figure>')+close);
 fs.writeFileSync(path.join(root,'index.html'),finalHTML);
 console.log(JSON.stringify({categories:menu.length,items:menu.reduce((n,s)=>n+s.items.length,0),output:path.join(root,'index.html')}));
 require('./prepare-admin.cjs');

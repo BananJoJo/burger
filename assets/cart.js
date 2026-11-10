@@ -79,17 +79,18 @@
  }));
  document.querySelectorAll('[data-remove-product]').forEach(button=>button.addEventListener('click',()=>{
   const id=button.dataset.removeProduct,p=catalog.find(p=>p.id===id);
-  change(id,0);
-  document.querySelector('[data-add-product="'+id+'"]').focus({preventScroll:true});
-  announce(p.name+' — убрали из корзины.');
+  const quantity=Math.max(0,(cart[id]||0)-1);
+  change(id,quantity);
+  if(!quantity)document.querySelector('[data-add-product="'+id+'"]').focus({preventScroll:true});
+  announce(quantity?p.name+' — в корзине '+quantity+' шт.':p.name+' — убрали из корзины.');
  }));
  document.querySelectorAll('[data-add-product]').forEach(button=>button.addEventListener('click',()=>{
   const id=button.dataset.addProduct;
   const p=catalog.find(p=>p.id===id);
   cart=core.setQuantity(cart,id,(cart[id]||0)+1,catalog);save();render();
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&button.animate){
-   button.getAnimations().forEach(animation=>animation.cancel());
-   button.animate([{background:'#753c28',boxShadow:'0 0 0 0 #f49a6166'},{background:'#4b2922',boxShadow:'0 0 0 9px #f49a6100'}],{duration:480,easing:'ease-out'});
+   // Keep background/opacity under CSS control, including hover transitions.
+   button.animate([{transform:'scale(1)'},{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:240,easing:'ease-out'});
    button.querySelector('span').animate([{transform:'scale(1)'},{transform:'scale(1.35)'},{transform:'scale(1)'}],{duration:320,easing:'ease-out'});
   }
   announce(p.name+' — в корзине '+cart[id]+' шт.');
