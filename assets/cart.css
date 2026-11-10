@@ -68,8 +68,8 @@ button:focus-visible,.whatsapp-order:focus-visible,.cart-message:focus-visible{o
 .cart-eyebrow{font:700 10px/1.4 Arial,sans-serif;letter-spacing:2px;color:#d1b79d;display:block;margin-bottom:12px}
 .cart-dialog h2{font-size:46px;letter-spacing:-.7px}.cart-dialog h2 span{color:#f44139}.cart-close{background:#2e2720;border-color:#63503f;color:#eadaca}
 .cart-content{padding:0 28px 20px;min-height:100px;scrollbar-width:thin;scrollbar-color:#83634c #211d18}
-.cart-list-caption{display:flex;justify-content:space-between;gap:12px;border-top:2px solid #df342a;padding:13px 0 16px;color:#bcae9c;font:12px/1.4 Arial,sans-serif}
-.cart-list-caption b{color:#f3dfc6}
+
+
 .cart-lines{display:grid;gap:10px}.cart-line{background:#26221c;border:1px solid #4c3d2f!important;border-radius:17px;padding:18px;gap:12px 16px}.cart-line h3{font-size:27px;color:#f7eddb}.cart-line-info p{color:#bfb09b}.cart-line-total{font:500 25px/1.2 Oswald,sans-serif;color:#ffb795}
 .cart-line-controls{background:#191714;border:1px solid #594532;border-radius:13px;gap:0;padding:2px}.quantity-button{background:transparent;border:0;width:44px;height:44px;color:#f7eddb}.quantity-button:hover{background:#4c3526}.cart-quantity{min-width:23px}
 .cart-remove{border:1px solid #68503d;border-radius:10px;text-decoration:none;padding:7px 12px;min-height:40px;color:#ceb599;background:#30261e}.cart-remove:hover{color:#fff;background:#553126}
@@ -82,7 +82,7 @@ button:focus-visible,.whatsapp-order:focus-visible,.cart-message:focus-visible{o
 .cart-dialog[open]{animation:cart-arrive .38s cubic-bezier(.16,1,.3,1)}.cart-dialog[open]::backdrop{animation:cart-backdrop .3s ease-out}
 @keyframes cart-arrive{from{opacity:0;transform:translateY(28px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes cart-backdrop{from{background:#0000;backdrop-filter:blur(0)}to{background:#000b;backdrop-filter:blur(5px)}}
-@media(max-width:700px){.cart-dock{padding:10px 12px;gap:12px;border-radius:19px}.dock-label>span{font-size:21px}.dock-label small{font-size:10px}.cart-dock strong{font-size:25px;margin-left:auto}.dock-arrow{width:30px;height:30px}.dock-icon{width:42px;height:42px}.cart-dialog{border-radius:22px}.cart-dialog-header{padding:20px 18px}.cart-eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:9px}.cart-dialog h2{font-size:37px}.cart-content{padding:0 14px 14px}.cart-list-caption{margin:0 4px;font-size:11px}.cart-line{padding:14px;gap:10px}.cart-line h3{font-size:23px}.cart-line-controls{gap:0}.cart-line-info p{font-size:12px}.cart-line-total{font-size:24px}.cart-footer{padding:18px;max-height:51dvh}.cart-summary strong{font-size:36px}.cart-summary>span{font-size:21px}.cart-summary small{font-size:8px;letter-spacing:1px}.cart-explanation{font-size:11px}}
+@media(max-width:700px){.cart-dock{padding:10px 12px;gap:12px;border-radius:19px}.dock-label>span{font-size:21px}.dock-label small{font-size:10px}.cart-dock strong{font-size:25px;margin-left:auto}.dock-arrow{width:30px;height:30px}.dock-icon{width:42px;height:42px}.cart-dialog{border-radius:22px}.cart-dialog-header{padding:20px 18px}.cart-eyebrow{font-size:9px;letter-spacing:1.5px;margin-bottom:9px}.cart-dialog h2{font-size:37px}.cart-content{padding:0 14px 14px}.cart-line{padding:14px;gap:10px}.cart-line h3{font-size:23px}.cart-line-controls{gap:0}.cart-line-info p{font-size:12px}.cart-line-total{font-size:24px}.cart-footer{padding:18px;max-height:51dvh}.cart-summary strong{font-size:36px}.cart-summary>span{font-size:21px}.cart-summary small{font-size:8px;letter-spacing:1px}.cart-explanation{font-size:11px}}
 @media(max-width:370px){.dock-label small{display:none}.dock-label>span{font-size:20px}.dock-arrow{display:none}.cart-dialog h2{font-size:33px}.cart-line-controls{grid-column:1;grid-row:2;justify-self:start}}
 @media(prefers-reduced-motion:reduce){.cart-dialog[open],.cart-dialog[open]::backdrop{animation:none}.cart-dock{transition:none}}
 
@@ -123,9 +123,30 @@ button:focus-visible,.whatsapp-order:focus-visible,.cart-message:focus-visible{o
 .cart-dialog{background:#f5eddf;border-color:#dcc5a7;color:#30251e}
 .cart-dialog-header{background:radial-gradient(ellipse at right top,#efc9a850,transparent 70%),#f5eddf}
 .cart-eyebrow{color:#88684c}.cart-close{background:#eadbc6;border-color:#cbb292;color:#61452f}
-.cart-content{scrollbar-color:#c6a581 #f5eddf}.cart-list-caption{color:#896c52}.cart-list-caption b{color:#5d402b}
+.cart-content{scrollbar-color:#c6a581 #f5eddf}
 .cart-line{background:#fffaF2;border-color:#e0ccb3!important;box-shadow:0 4px 12px #8b5e2905}
 .cart-line h3{color:#30251e}.cart-line-info p{color:#786553}.cart-line-total{color:#af3025}
 .cart-line-controls{background:#f2e6d5;border-color:#dcc5a7}.quantity-button{color:#67472f}.quantity-button:hover{background:#e9d1b4}
 .cart-remove{background:#f6e8d7;border-color:#dcc5a7;color:#805439}.cart-remove:hover{background:#ecd3b6;color:#4e3120}
 .cart-empty{color:#786553}.cart-footer{border-top:1px solid #dcc5a7}
+
+
+/* Two independently orderable volumes for each cold drink. */
+.menu-layout .item[data-drink]{display:block;padding:22px;background:#fffaf2;border:1px solid #ddcbb5;border-radius:20px;margin-bottom:20px;align-self:start}
+.menu-layout .item[data-drink] h3{margin:0 0 18px;font-size:28px;line-height:1.2}
+.drink-variants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.drink-variant{padding:13px 10px 11px;background:#f5eddf;border:1px solid #e4d3bc;border-radius:14px;min-width:0}
+.drink-volume{display:inline-flex;align-items:center;justify-content:center;padding:8px 13px;min-height:42px;border-radius:10px;background:#38291f;color:#fff4df;font:600 23px/1.1 Oswald,sans-serif;letter-spacing:.2px;margin-bottom:14px;white-space:nowrap}
+.drink-variant .item-order{width:100%;max-width:none;align-items:stretch}
+.drink-variant .price-add{align-self:flex-start;box-shadow:none;background:transparent!important;color:#ad3025!important;border:0;padding:0 0 7px;min-height:37px;font:600 25px/1.1 Oswald,sans-serif;border-radius:6px;margin-bottom:8px}
+.drink-variant .price-add:hover{color:#e3382c!important}
+.drink-variant .add-to-cart{padding:8px 7px;font-size:12px;gap:3px}
+.drink-variant .menu-remove{padding:8px 5px;font-size:12px}
+@media(max-width:440px){.menu-layout .item[data-drink]{padding:18px 14px}.drink-variants{gap:10px}.drink-variant{padding:12px 9px}.drink-variant .add-to-cart>span{min-width:14px}}
+/* Optional order notes. */
+.cart-comment-field{margin:18px 0}.cart-comment-field label{display:block;font:500 24px/1.2 Oswald,sans-serif;margin-bottom:10px;color:#30251e}.cart-comment{display:block;width:100%;min-height:88px;resize:vertical;padding:13px 15px;border:1px solid #d6b99a;border-radius:14px;background:#fffaf2;color:#30251e;font:15px/1.5 Arial,sans-serif}.cart-comment::placeholder{color:#8b755f}.cart-comment:focus-visible{outline:2px solid #b83c2b;outline-offset:2px}.cart-comment-field .cart-hint{margin:7px 0 0}
+.item.with-photo{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start}.dish-photo{grid-column:1/-1;display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:15px;margin-bottom:10px}.item[data-drink] .dish-photo{margin-bottom:18px}.live-menu-unavailable{padding:16px 5%;margin:0;background:#f4dfca;color:#8a3022;font-size:14px}
+
+/* Clear order controls and the confirmed village delivery offer. */
+.cart-content::before{content:"";display:block;border-top:2px solid #df342a;margin-bottom:14px}
+.cart-delivery-note{margin:18px 0 24px;padding:18px;background:#ae3026;border:1px solid #97291f;border-radius:16px;color:#fff8ed}.delivery-highlight{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.cart-delivery-note strong{font:500 27px/1.15 Oswald,sans-serif}.delivery-threshold{display:inline-block;padding:7px 12px;border-radius:10px;background:#fff0d4;color:#8b251d;font:600 25px/1.1 Oswald,sans-serif;white-space:nowrap}.cart-delivery-note p{margin:10px 0 5px;font-size:15px;line-height:1.45}.cart-delivery-note small{display:block;font-size:12px;line-height:1.5;color:#ffe3cf}

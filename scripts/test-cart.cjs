@@ -13,15 +13,42 @@ cart=core.setQuantity(cart,chicken.id,0,catalog);assert.equal(core.total(cart,ca
 const text=core.message(cart,catalog);assert(text.includes('Чиабатта с говядиной'));assert(text.includes('Los Burger — С говядиной'));assert(text.includes('790'));assert(!text.includes('Чиабатта с курицей'));
 const url=core.whatsappUrl('70000000000',text);assert.equal(new URL(url).searchParams.get('text'),text);assert.equal(new URL(url).pathname,'/70000000000');
 assert.equal(core.whatsappUrl('',text),null);assert.equal(core.whatsappUrl('javascript:alert(1)',text),null);assert.equal(core.whatsappUrl('70000000000',''),null);
-const cold=catalog.find(p=>p.category==='Холодные напитки');assert.equal(cold.price,null);assert.deepEqual(core.setQuantity({},cold.id,1,catalog),{});
+const cold=catalog.filter(p=>p.category==='Холодные напитки');
+assert.equal(cold.length,10);assert.equal(new Set(cold.map(p=>p.id)).size,10);
+for(const name of new Set(cold.map(p=>p.name))){
+ const variants=cold.filter(p=>p.name===name);
+ assert.deepEqual(variants.map(p=>[p.description,p.price]),[['1 л',180],['2 л',400]]);
+}
+const oneLiter=cold.find(p=>p.description==='1 л'),twoLiter=cold.find(p=>p.name===oneLiter.name&&p.description==='2 л');
+let drinks=core.setQuantity({},oneLiter.id,2,catalog);drinks=core.setQuantity(drinks,twoLiter.id,1,catalog);
+assert.equal(core.total(drinks,catalog),760);assert.equal(core.count(drinks,catalog),3);
+assert(core.message(drinks,catalog).includes(oneLiter.name+' — 1 л'));assert(core.message(drinks,catalog).includes(twoLiter.name+' — 2 л'));
+drinks=core.restore(JSON.parse(JSON.stringify(drinks)),catalog);assert.equal(core.total(drinks,catalog),760);
+drinks=core.setQuantity(drinks,oneLiter.id,0,catalog);assert.equal(core.total(drinks,catalog),400);assert.equal(drinks[twoLiter.id],1);
 assert.deepEqual(core.restore({unknown:3,[beef.id]:-1,[chicken.id]:1.5,[burger.id]:'2'},catalog),{});
 assert.equal(core.restore({[beef.id]:10000},catalog)[beef.id],99);
 const restored=core.restore(JSON.parse(JSON.stringify(cart)),catalog);assert.equal(core.total(restored,catalog),790);
 assert.equal(core.total(restored,catalog.map(p=>p.id===beef.id?{...p,price:300}:p)),870,'Restored cart must use current catalog prices');
-assert.equal(core.message({},catalog),'');assert.equal(catalog.filter(p=>p.price!==null).length,63);
-console.log('PASS: variants, quantities, removal, totals, message/URL, corrupted storage, current prices, 63 orderable products and 5 unresolved drinks');
+assert.equal(core.message({},catalog),'');assert.equal(catalog.filter(p=>p.price!==null).length,73);
+console.log('PASS: variants, quantities, removal, totals, message/URL, corrupted storage, current prices, 73 orderable variants including 10 cold drink volumes');
 assert(core.message(cart,catalog,'cash').includes('Оплата: Наличными'));
 assert(core.message(cart,catalog,'transfer').includes('Оплата: Перевод на карту'));
 assert(!core.message(cart,catalog,'invalid').includes('Оплата:'));
 assert.equal(core.message({},catalog,'cash'),'');
 console.log('PASS: payment labels and invalid/empty cases');
+
+assert(text.includes('*2 шт.*'));
+const noted=core.message(cart,catalog,'cash','  Без лука\nСоус отдельно 🥫  ');
+assert(noted.includes('💬 *Комментарий к заказу:*\nБез лука\nСоус отдельно 🥫'));
+assert(!core.message(cart,catalog,'cash','   ').includes('Комментарий к заказу'));
+assert(core.message(cart,catalog,'cash','x'.repeat(600)).includes('x'.repeat(500)));
+assert(!core.message(cart,catalog,'cash','x'.repeat(600)).includes('x'.repeat(501)));
+assert.equal(new URL(core.whatsappUrl('70000000000',noted)).searchParams.get('text'),noted);
+assert.equal(core.message({},catalog,'cash','Без лука'),'');
+console.log('PASS: bold quantities, optional comment, length limit and WhatsApp URL roundtrip');
+
+assert(core.message(cart,catalog,'cash','','delivery').includes('Получение: Доставка'));
+assert(core.message(cart,catalog,'cash','','pickup').includes('Получение: Самовывоз'));
+assert(!core.message(cart,catalog,'cash','','unknown').includes('Получение:'));
+assert.equal(core.message({},catalog,'cash','','pickup'),'');
+console.log('PASS: delivery/pickup and unspecified fulfillment');

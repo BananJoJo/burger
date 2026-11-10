@@ -2,12 +2,19 @@
   "name": "sweet-sushi-menu",
   "version": "1.0.0",
   "private": true,
-  "description": "Адаптивное демонстрационное меню Sweet Sushi",
+  "description": "Меню Sweet Sushi с корзиной и серверной админкой",
   "scripts": {
     "build": "node scripts/build.cjs",
     "start": "node scripts/server.cjs",
     "check": "node scripts/check.cjs",
-    "test": "node scripts/test-cart.cjs"
+    "test": "node scripts/test-cart.cjs && node scripts/test-admin.cjs && node scripts/test-server.cjs && node scripts/test-publisher.cjs",
+    "test:admin": "node scripts/test-admin.cjs",
+    "test:server": "node scripts/test-server.cjs",
+    "setup:admin": "node scripts/setup-admin.cjs",
+    "start:production": "node scripts/start-production.cjs",
+    "test:publisher": "node scripts/test-publisher.cjs"
   },
-  "engines": { "node": ">=18" }
+  "engines": {
+    "node": ">=18"
+  }
 }

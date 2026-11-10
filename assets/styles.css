@@ -169,3 +169,29 @@ nav a:not(.active):hover{background:transparent;border-color:transparent;color:#
 .menu-layout .note{color:#786553}.menu-layout .item-unavailable{color:#876e55}
 footer{background:#eee2d0;border-top-color:#dbc7ad;color:#786553}
 @media(max-width:700px){.menu-layout{padding-left:5%;padding-right:5%}}
+
+/* Each category is one complete panel, including its dishes. */
+.menu-layout .menu-section{padding:24px;background:#ecddc9;border:1px solid #cfaf8e;border-radius:22px;box-shadow:0 8px 24px #6c48200a}
+.menu-layout .menu-section>h2{padding:15px 20px;margin:0 0 20px;background:#65452f;color:#fff8ed;border:0;border-radius:13px;font-size:34px;line-height:1.2;box-shadow:none}
+.menu-layout .menu-section>h2::before{display:none}
+.menu-layout .menu-section .item{border-color:#cdb497}
+.menu-layout .menu-section+.menu-section{margin-top:32px}
+@media(max-width:700px){.menu-layout .menu-section{padding:16px;border-radius:18px}.menu-layout .menu-section>h2{padding:14px 16px;font-size:29px;margin-bottom:18px}.menu-layout .menu-section+.menu-section{margin-top:26px}}
+
+/* The category navigator uses the same palette as menu panels. */
+.menu-layout aside{background:#ecddc9;border-color:#cfaf8e;box-shadow:0 8px 24px #6c48200a}
+.menu-layout aside .menu-intro{padding:0;margin-bottom:12px;background:transparent;border:0;border-radius:0}
+.menu-layout aside .menu-kicker{color:#896247;font-size:17px;margin-bottom:9px}
+.menu-layout aside h2{color:#30251e;margin:0;padding:0;border:0;line-height:1.2}
+
+/* One sample photo card, before the restaurant provides dish photography. */
+.menu-layout .item[data-burger-draft]{display:grid;grid-template-columns:148px minmax(0,1fr);align-items:start;gap:10px 16px;padding:20px 0}
+.menu-layout .item[data-burger-draft]>.item-order{grid-column:2;max-width:none;min-width:114px;width:114px;justify-self:start;align-items:flex-start}
+.menu-layout .item[data-burger-draft]>div:not(.item-order){grid-column:2;min-width:0}
+.burger-card-photo{grid-column:1;grid-row:1/3;align-self:start;position:relative;width:148px;height:168px;margin:0;padding:4px;overflow:hidden;border:1px solid #c7a47e;border-radius:14px;background:#fff4e2;box-shadow:0 4px 12px #65452f12;isolation:isolate}
+.burger-card-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 53%;border-radius:9px;animation:none;transform:scale(1.18)}
+.burger-card-photo figcaption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:700px){.menu-layout .item[data-burger-draft]{grid-template-columns:120px minmax(0,1fr);gap:10px 12px}.burger-card-photo{width:120px;height:148px}}
+@media(prefers-reduced-motion:reduce){.burger-card-photo img{animation:none}}
+
+@media(max-width:370px){.menu-layout .item[data-burger-draft]{grid-template-columns:100px minmax(0,1fr);column-gap:10px}.burger-card-photo{width:100px;height:132px}}

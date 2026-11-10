@@ -1,0 +1,1 @@
+.item.with-photo{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start}.dish-photo{grid-column:1/-1;display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:15px;margin-bottom:10px}.item[data-drink] .dish-photo{margin-bottom:18px}

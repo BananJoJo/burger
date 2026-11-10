@@ -1,18 +1,4 @@
-const http=require('node:http');
-const fs=require('node:fs');
-const path=require('node:path');
-const root=path.resolve(__dirname,'..');
-const port=Number(process.env.PORT||8766);
-const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.jpg':'image/jpeg','.png':'image/png','.svg':'image/svg+xml','.ico':'image/x-icon','.ttf':'font/ttf'};
-http.createServer((req,res)=>{
- let url;
- try{url=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{res.writeHead(400).end('Bad request');return;}
- if(url!=='/'&&url!=='/index.html'&&!url.startsWith('/assets/')){res.writeHead(404).end('Not found');return;}
- const file=path.resolve(root,'.'+(url==='/'?'/index.html':url));
- if(!file.startsWith(root+path.sep)){res.writeHead(403).end('Forbidden');return;}
- fs.readFile(file,(error,data)=>{
-  if(error){res.writeHead(404).end('Not found');return;}
-  res.writeHead(200,{'Content-Type':mime[path.extname(file)]||'application/octet-stream','Cache-Control':'no-cache','X-Content-Type-Options':'nosniff'});
-  res.end(data);
- });
-}).listen(port,'127.0.0.1',()=>console.log(`Open http://127.0.0.1:${port}/ — Ctrl+C to stop`));
+const path=require('node:path'),{createApp}=require('../server/app.cjs');
+const port=Number(process.env.PORT||8766),host=process.env.HOST||'127.0.0.1';
+const {server}=createApp({dataDir:path.resolve(process.env.MENU_DATA_DIR||path.join(__dirname,'../../.sweet-sushi-private')),publicOrigin:process.env.PUBLIC_SITE_ORIGIN||'https://bananjojo.github.io',publisherOptions:{mode:process.env.MENU_PUBLISH_MODE||(process.env.NODE_ENV==='production'?'github':'local'),repository:process.env.GITHUB_REPOSITORY||'BananJoJo/burger',branch:process.env.GITHUB_BRANCH||'main',token:process.env.MENU_GITHUB_TOKEN||''}});
+server.listen(port,host,()=>console.log(`Sweet Sushi: http://${host}:${port}/ | Admin: /admin/`));

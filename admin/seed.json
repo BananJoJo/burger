@@ -1,0 +1,1042 @@
+{
+  "version": 1,
+  "sections": [
+    {
+      "id": "category-0",
+      "name": "Бургеры",
+      "items": [
+        {
+          "id": "dish-867953eff9bd4943",
+          "name": "Los Burger",
+          "description": "С говядиной",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "867953eff9bd4943",
+              "label": "",
+              "price": 270
+            }
+          ]
+        },
+        {
+          "id": "dish-eea289c401bb33a0",
+          "name": "Los Burger",
+          "description": "С курицей",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "eea289c401bb33a0",
+              "label": "",
+              "price": 270
+            }
+          ]
+        },
+        {
+          "id": "dish-9a797e371742e111",
+          "name": "Chili Boom",
+          "description": "Острый бургер с говядиной",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "9a797e371742e111",
+              "label": "",
+              "price": 270
+            }
+          ]
+        },
+        {
+          "id": "dish-751c97300f6492c9",
+          "name": "Chili Boom",
+          "description": "Острый бургер с курицей",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "751c97300f6492c9",
+              "label": "",
+              "price": 270
+            }
+          ]
+        },
+        {
+          "id": "dish-f6767195cca1c2c7",
+          "name": "Бургер криспи",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "f6767195cca1c2c7",
+              "label": "",
+              "price": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-1",
+      "name": "Чиабатта",
+      "items": [
+        {
+          "id": "dish-0662b5171fcac281",
+          "name": "Чиабатта с говядиной",
+          "description": "С говядиной",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "0662b5171fcac281",
+              "label": "",
+              "price": 260
+            }
+          ]
+        },
+        {
+          "id": "dish-db3220c7ccd4db21",
+          "name": "Чиабатта с курицей",
+          "description": "С курицей",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "db3220c7ccd4db21",
+              "label": "",
+              "price": 260
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-2",
+      "name": "Классика",
+      "items": [
+        {
+          "id": "dish-a31dbcde6deac861",
+          "name": "Гамбургер",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "a31dbcde6deac861",
+              "label": "",
+              "price": 130
+            }
+          ]
+        },
+        {
+          "id": "dish-9ec8dc0521484ea8",
+          "name": "Чизбургер",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "9ec8dc0521484ea8",
+              "label": "",
+              "price": 150
+            }
+          ]
+        },
+        {
+          "id": "dish-6194046bb86108b9",
+          "name": "Двойной чизбургер",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "6194046bb86108b9",
+              "label": "",
+              "price": 260
+            }
+          ]
+        },
+        {
+          "id": "dish-3615ac5daf7161ba",
+          "name": "Хот дог",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "3615ac5daf7161ba",
+              "label": "",
+              "price": 120
+            }
+          ]
+        },
+        {
+          "id": "dish-e6aedf05ea9ccb5f",
+          "name": "Кинкер",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "e6aedf05ea9ccb5f",
+              "label": "",
+              "price": 180
+            }
+          ]
+        },
+        {
+          "id": "dish-8effbc0630448b62",
+          "name": "Шаурма",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "8effbc0630448b62",
+              "label": "",
+              "price": 200
+            }
+          ]
+        },
+        {
+          "id": "dish-d28ccf1f182eb3df",
+          "name": "Шаурма в кляре",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "d28ccf1f182eb3df",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-682458be3526b078",
+          "name": "Данар",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "682458be3526b078",
+              "label": "",
+              "price": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-3",
+      "name": "На тарелке",
+      "items": [
+        {
+          "id": "dish-0d015939c07340cb",
+          "name": "Гиро на тарелке",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "0d015939c07340cb",
+              "label": "",
+              "price": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-4",
+      "name": "Картофель и снеки",
+      "items": [
+        {
+          "id": "dish-62633bb67a7cfcf7",
+          "name": "Картофель фри",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "62633bb67a7cfcf7",
+              "label": "",
+              "price": 130
+            }
+          ]
+        },
+        {
+          "id": "dish-63689a9e81ea06f1",
+          "name": "Картофель по деревенски",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "63689a9e81ea06f1",
+              "label": "",
+              "price": 130
+            }
+          ]
+        },
+        {
+          "id": "dish-05bf546ea11ff041",
+          "name": "Куриный попкорн",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "05bf546ea11ff041",
+              "label": "",
+              "price": 270
+            }
+          ]
+        },
+        {
+          "id": "dish-c453e1d4fc898370",
+          "name": "Наггетсы",
+          "description": "6 шт.",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "c453e1d4fc898370",
+              "label": "",
+              "price": 140
+            }
+          ]
+        },
+        {
+          "id": "dish-872e215e7ec58fa3",
+          "name": "Острые крылышки",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "872e215e7ec58fa3",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-807c814a7f756529",
+          "name": "Оригинальные крылышки",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "807c814a7f756529",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-964f36b6770d6398",
+          "name": "Стрипсы",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "964f36b6770d6398",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-8c022a6511943f1e",
+          "name": "Сырные палочки",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "8c022a6511943f1e",
+              "label": "",
+              "price": 200
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-5",
+      "name": "Пиццы",
+      "items": [
+        {
+          "id": "dish-3b132f154d6d228c",
+          "name": "Ассорти",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "3b132f154d6d228c",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-32e698ecfddaeaa2",
+          "name": "Куриная",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "32e698ecfddaeaa2",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-ea7a1d06ab93eba0",
+          "name": "Мясная",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "ea7a1d06ab93eba0",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-1aa9a3b33156171f",
+          "name": "Грибная",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "1aa9a3b33156171f",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-76cb5dfa37a34e02",
+          "name": "Сырная",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "76cb5dfa37a34e02",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-69288e2b4ad06a55",
+          "name": "Пепперони",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "69288e2b4ad06a55",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-c63e7463ca99ce78",
+          "name": "Пицца Цезарь",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "c63e7463ca99ce78",
+              "label": "",
+              "price": 450
+            }
+          ]
+        },
+        {
+          "id": "dish-f1ba60a2e215207d",
+          "name": "Пицца «Фри»",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "f1ba60a2e215207d",
+              "label": "",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-1e9fc8dcc2e349ca",
+          "name": "Пицца «По деревенски»",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "1e9fc8dcc2e349ca",
+              "label": "",
+              "price": 400
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-6",
+      "name": "Роллы и суши",
+      "items": [
+        {
+          "id": "dish-d682a75161b0fdf4",
+          "name": "Горячий шик",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "d682a75161b0fdf4",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-e4310600014e2c3a",
+          "name": "Бешеный лосось",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "e4310600014e2c3a",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-475952dd937ed603",
+          "name": "Калифорния с лососем",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "475952dd937ed603",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-7060fe2cda2538bf",
+          "name": "Калифорния с крабом",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "7060fe2cda2538bf",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-4f33369f63888d5f",
+          "name": "Филадельфия",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "4f33369f63888d5f",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-5e0e029fcca0e999",
+          "name": "Цезарь ролл",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "5e0e029fcca0e999",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-792948905230d1fe",
+          "name": "Запечённый ролл с лососем",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "792948905230d1fe",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-39975672750dea1d",
+          "name": "Запечённый ролл с креветками",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "39975672750dea1d",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-3f857fa2ddf29a6f",
+          "name": "Ролл «Чикен чиз»",
+          "description": "Запечённый",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "3f857fa2ddf29a6f",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-939b351c6e7b24f1",
+          "name": "Цунами",
+          "description": "Острый ролл",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "939b351c6e7b24f1",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-c53e902885a09a1c",
+          "name": "Коготь дракона",
+          "description": "Острый ролл",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "c53e902885a09a1c",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-5214e0f4e8bb2b3e",
+          "name": "Тайфун",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "5214e0f4e8bb2b3e",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-7a86cd9c588f7d78",
+          "name": "Американо",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "7a86cd9c588f7d78",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-9ffdf6d1c3334de2",
+          "name": "Суши-запеканка с лососем",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "9ffdf6d1c3334de2",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-91430d271f9d5584",
+          "name": "Суши-запеканка с курицей",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "91430d271f9d5584",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-717917335924471b",
+          "name": "Сендвич ролл",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "717917335924471b",
+              "label": "",
+              "price": 350
+            }
+          ]
+        },
+        {
+          "id": "dish-678fcbcafe92e7df",
+          "name": "Ролл «Хот дог»",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "678fcbcafe92e7df",
+              "label": "",
+              "price": 300
+            }
+          ]
+        },
+        {
+          "id": "dish-8022a768ede4f294",
+          "name": "Креветки",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "8022a768ede4f294",
+              "label": "",
+              "price": 350
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-7",
+      "name": "Салаты",
+      "items": [
+        {
+          "id": "dish-d60adeeedc2928ed",
+          "name": "Свежий",
+          "description": "Помидоры, огурцы, лук · Масло или майонез",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "d60adeeedc2928ed",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-402172c1eab3aee7",
+          "name": "Цезарь",
+          "description": "Пекинская капуста, курица, помидоры, огурцы · Чесночный соус",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "402172c1eab3aee7",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-23344d9d3ca8b2b9",
+          "name": "Греческий",
+          "description": "Помидоры, огурцы, болгарский перец, лук, сыр фета · Оливковое масло",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "23344d9d3ca8b2b9",
+              "label": "",
+              "price": 250
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-8",
+      "name": "Горячие напитки",
+      "items": [
+        {
+          "id": "dish-9cbede4a83fa2b18",
+          "name": "Дикая вишня",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "9cbede4a83fa2b18",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-140b1cedeab91293",
+          "name": "Наглый фрукт",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "140b1cedeab91293",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-f40e4b60ba4f994c",
+          "name": "Великий князь",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "f40e4b60ba4f994c",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-0128e0dc3196c7d4",
+          "name": "Брызги шампанского",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "0128e0dc3196c7d4",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-8a161fd11bffbce9",
+          "name": "Граф Орлов",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "8a161fd11bffbce9",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-b5d25fc460acd099",
+          "name": "Чай с чабрецом",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "b5d25fc460acd099",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-1c00b9e8fc0661c2",
+          "name": "1001 ночь",
+          "description": "1 л",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "1c00b9e8fc0661c2",
+              "label": "",
+              "price": 250
+            }
+          ]
+        },
+        {
+          "id": "dish-39ea769bbd1ac0dd",
+          "name": "Чай",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "39ea769bbd1ac0dd",
+              "label": "",
+              "price": 30
+            }
+          ]
+        },
+        {
+          "id": "dish-3f3d7d6b6cd9fa60",
+          "name": "Кофе 3 в 1",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "3f3d7d6b6cd9fa60",
+              "label": "",
+              "price": 30
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "category-9",
+      "name": "Холодные напитки",
+      "items": [
+        {
+          "id": "dish-755b935dddd0d654",
+          "name": "Голубая лагуна",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "755b935dddd0d654",
+              "label": "1 л",
+              "price": 180
+            },
+            {
+              "id": "d09f7e4b6496dc4c",
+              "label": "2 л",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-c0d14c0685ba08f0",
+          "name": "Лесные ягоды",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "c0d14c0685ba08f0",
+              "label": "1 л",
+              "price": 180
+            },
+            {
+              "id": "b295c4ac070f0b73",
+              "label": "2 л",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-7b01482b30292af7",
+          "name": "Клубничный",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "7b01482b30292af7",
+              "label": "1 л",
+              "price": 180
+            },
+            {
+              "id": "d451c4150b674c6b",
+              "label": "2 л",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-ac53534a17dcef89",
+          "name": "Оригинальный",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "ac53534a17dcef89",
+              "label": "1 л",
+              "price": 180
+            },
+            {
+              "id": "0a61b5dfc65b3e39",
+              "label": "2 л",
+              "price": 400
+            }
+          ]
+        },
+        {
+          "id": "dish-5c84f9f7defff5d0",
+          "name": "Манго/маракуя",
+          "description": "",
+          "photo": "",
+          "available": true,
+          "variants": [
+            {
+              "id": "5c84f9f7defff5d0",
+              "label": "1 л",
+              "price": 180
+            },
+            {
+              "id": "61e2f6b55adc08af",
+              "label": "2 л",
+              "price": 400
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

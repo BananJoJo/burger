@@ -1,0 +1,16 @@
+const crypto=require('node:crypto'),fs=require('node:fs/promises'),path=require('node:path'),{promisify}=require('node:util');
+const derive=promisify(crypto.scrypt),options={N:32768,r:8,p:1,maxmem:64*1024*1024};
+async function passwordRecord(username,password){if(typeof password!=='string'||password.length<12||password.length>512)throw Error('Пароль: от 12 до 512 символов.');const salt=crypto.randomBytes(32).toString('hex');return {username,algorithm:'scrypt',salt,hash:(await derive(password,salt,64,options)).toString('hex')};}
+async function verify(record,password){if(record?.algorithm!=='scrypt'||!/^\w{64}$/.test(record.salt)||!/^[a-f0-9]{128}$/.test(record.hash)||typeof password!=='string'||password.length>512)return false;const key=await derive(password,record.salt,64,options);return crypto.timingSafeEqual(key,Buffer.from(record.hash,'hex'));}
+const digest=s=>crypto.createHash('sha256').update(s).digest('hex');
+async function atomic(file,data){await fs.mkdir(path.dirname(file),{recursive:true});const tmp=file+'.'+crypto.randomUUID()+'.tmp';try{await fs.writeFile(tmp,JSON.stringify(data,null,2),{mode:0o600});await fs.rename(tmp,file);}finally{await fs.rm(tmp,{force:true});}}
+function authManager({dataDir,secure=false,ttl=8*60*60*1000,now=Date.now}){
+ const sessions=new Map(),attempts=new Map(),authFile=path.join(dataDir,'auth.json');
+ const cookie=(value,age)=>`sweet_session=${value}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${age}${secure?'; Secure':''}`;
+ async function record(){try{return JSON.parse(await fs.readFile(authFile,'utf8'));}catch{throw Object.assign(Error('Сначала настройте вход командой node scripts/setup-admin.cjs.'),{status:503});}}
+ async function login(username,password,ip){const key=digest(ip),time=now();for(const [k,v] of attempts)if(v.until<time)attempts.delete(k);let rate=attempts.get(key);if(!rate){if(attempts.size>=1000)throw Object.assign(Error('Попробуйте войти позже.'),{status:429});rate={count:0,until:time+15*60*1000};attempts.set(key,rate);}if(++rate.count>5)throw Object.assign(Error('Слишком много попыток. Повторите вход через 15 минут.'),{status:429});const account=await record();if(!await verify(account,password)||username!==account.username)throw Object.assign(Error('Неверный логин или пароль.'),{status:401});attempts.delete(key);for(const [k,s] of sessions)if(s.expires<=time)sessions.delete(k);if(sessions.size>=100)throw Object.assign(Error('Слишком много активных входов. Повторите позже.'),{status:429});const token=crypto.randomBytes(32).toString('hex'),session={user:username,csrf:crypto.randomBytes(32).toString('hex'),expires:time+ttl,authVersion:digest(account.hash)};sessions.set(digest(token),session);return {session,cookie:cookie(token,Math.floor(ttl/1000))};}
+ async function session(req){const raw=(req.headers.cookie||'').split(';').map(s=>s.trim()).find(s=>s.startsWith('sweet_session='))?.slice(14);if(!raw||!/^[a-f0-9]{64}$/.test(raw))return null;const key=digest(raw),s=sessions.get(key);if(!s||s.expires<=now()){sessions.delete(key);return null;}const account=await record();if(s.authVersion!==digest(account.hash)){sessions.delete(key);return null;}return {...s,key};}
+ function logout(s){if(s)sessions.delete(s.key);return cookie('',0);}
+ return {login,session,logout};
+}
+module.exports={passwordRecord,verify,atomic,authManager};

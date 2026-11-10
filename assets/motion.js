@@ -65,7 +65,8 @@
  const animations = new Set();
  const activeReveals = new WeakMap();
  const reveal = (el, delay=0) => {
-  if(reduced.matches || !el.animate) return;
+  // Prices and order controls must remain visible and clickable during fast scrolling.
+  if(reduced.matches || !el.animate || el.matches('.item-order,.drink-variants')) return;
   activeReveals.get(el)?.cancel();
   const stableTarget=el.matches('.menu-section h2,aside,.item-order');
   const imageScene=el.matches('.hero>div:nth-child(2)');
@@ -82,7 +83,7 @@
    if(!entry.isIntersecting){entered.delete(entry.target);continue;}
    if(entered.has(entry.target))continue;
    entered.add(entry.target);
-   const targets=entry.target===hero?heroParts:entry.target.matches('.item')?[...entry.target.children]:[entry.target];
+   const targets=entry.target===hero?heroParts:entry.target.matches('.item')?[...entry.target.children].filter(el=>!el.matches('.item-order,.drink-variants')):[entry.target];
    targets.forEach((el,i)=>reveal(el,Math.min((index+i)*70,280)));
    index++;
   }

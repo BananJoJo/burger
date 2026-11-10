@@ -1,0 +1,18 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),core=require('../admin/core.js');
+const seed=JSON.parse(fs.readFileSync(path.join(__dirname,'../admin/seed.json'),'utf8'));
+const valid=core.validate(seed),items=valid.sections.flatMap(s=>s.items);assert.equal(items.length,68);assert.equal(items.flatMap(p=>p.variants).length,73);
+const changed=JSON.parse(JSON.stringify(valid));changed.sections[0].items[0].variants[0].price=-1;assert.throws(()=>core.validate(changed));
+changed.sections[0].items[0].variants[0].price=2.5;assert.throws(()=>core.validate(changed));
+changed.sections[0].items[0].variants[0].price=300;changed.sections[0].items[0].photo='javascript:alert(1)';assert.throws(()=>core.validate(changed));
+changed.sections[0].items[0].photo='';changed.sections[0].items[0].name='<script>alert(1)</script>';assert(!core.preview(changed).includes('<script>'));assert(core.preview(changed).includes('&lt;script&gt;'));
+changed.sections[0].items[0].available=false;assert(!core.preview(changed).includes('&lt;script&gt;'));
+const moved=core.move(valid,items[0].id,valid.sections[1].id);assert(moved.sections[1].items.some(p=>p.id===items[0].id));assert.equal(moved.sections.flatMap(s=>s.items).length,68);assert.equal(core.validate(seed).sections[0].items.length,valid.sections[0].items.length);
+const duplicate=JSON.parse(JSON.stringify(valid));duplicate.sections[0].items[1].id=duplicate.sections[0].items[0].id;assert.throws(()=>core.validate(duplicate));
+assert.deepEqual(core.validate(JSON.parse(JSON.stringify(valid))),valid);
+const volumes=[{id:'volume-1',label:'1 л',price:180},{id:'volume-2',label:'2 л',price:400}];
+assert.deepEqual(core.variantsForCategory(volumes,'Холодные напитки'),volumes);
+assert.deepEqual(core.variantsForCategory(volumes,'Горячие напитки'),volumes);
+assert.deepEqual(core.variantsForCategory(volumes,'Бургеры'),[{id:'volume-1',label:'',price:180}]);
+assert.equal(volumes.length,2,'Changing the editor category must not mutate the working volumes');
+assert.equal(core.variantsForCategory(volumes,'Холодные напитки')[1].id,'volume-2');
+console.log('PASS: admin seed, 68 dishes/73 variants, validation, stable IDs, moving categories, hidden dishes, escaped preview and backup roundtrip');

@@ -1,0 +1,9 @@
+.back-to-menu{position:fixed;z-index:24;left:50%;transform:translateX(-50%);bottom:calc(max(20px,env(safe-area-inset-bottom)) + var(--back-cart-offset,0px));display:grid;place-items:center;width:48px;height:48px;border:1px solid #ed6651;border-radius:50%;background:#df3025;color:#fff8ed;box-shadow:0 4px 0 #a62b22,0 8px 24px #643f2426;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:background .2s,box-shadow .2s}
+.back-to-menu[hidden]{display:none!important}
+.back-to-menu{opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,16px) scale(.85);transition:opacity .24s ease,transform .3s cubic-bezier(.2,.8,.2,1),visibility 0s .3s,background .2s,box-shadow .2s}
+.back-to-menu.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0) scale(1);transition-delay:0s}
+.back-to-menu.is-visible:active{transform:translate(-50%,3px) scale(.93);box-shadow:0 1px 0 #a62b22,0 4px 12px #643f2426}
+.back-to-menu svg{width:25px;height:25px;pointer-events:none}
+.back-to-menu:focus-visible{outline:3px solid #9c4a2c;outline-offset:4px}
+@media(hover:hover){.back-to-menu:hover{background:#bd281f;box-shadow:0 4px 0 #8d251e,0 10px 28px #643f2440}}
+@media(prefers-reduced-motion:reduce){.back-to-menu{transition:none}}

@@ -1,0 +1,1 @@
+module.exports='<a class="back-to-menu" href="#menu" aria-label="К началу меню" title="К началу меню" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 12 6-6 6 6M12 6v13"/></svg></a>';

@@ -11,10 +11,13 @@
  const checkout=dialog.querySelector('[data-whatsapp-order]');
  const copy=dialog.querySelector('[data-copy-order]');
  const preview=dialog.querySelector('.cart-message');
+ const commentInput=dialog.querySelector('.cart-comment');
  const configNote=dialog.querySelector('[data-config-note]');
  const status=document.querySelector('.cart-status');
- let cart={},statusTimer,lastOpener,payment='cash';
+ let cart={},statusTimer,lastOpener,payment='cash',fulfillment='';
  try{const stored=localStorage.getItem(storageKey+'-payment');if(['cash','transfer'].includes(stored))payment=stored;}catch{} 
+ try{commentInput.value=(localStorage.getItem(storageKey+'-comment')||'').slice(0,500);}catch{}
+ try{const stored=localStorage.getItem(storageKey+'-fulfillment');if(['delivery','pickup'].includes(stored))fulfillment=stored;}catch{}
  const announce=text=>{clearTimeout(statusTimer);status.textContent=text;statusTimer=setTimeout(()=>{status.textContent='';},2400);};
  try{cart=core.restore(JSON.parse(localStorage.getItem(storageKey)||'{}'),catalog);}catch{announce('Корзина работает, но сохранение на этом устройстве недоступно.');}
  const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(cart));}catch{announce('Не удалось сохранить корзину. Текущий заказ останется здесь до закрытия страницы.');}};
@@ -47,9 +50,10 @@
   document.querySelectorAll('[data-cart-total]').forEach(el=>el.textContent=total);
   dock.hidden=count===0;empty.hidden=count>0;copy.disabled=count===0;
   renderLines();
-  const text=core.message(cart,catalog,payment),url=core.whatsappUrl(config.whatsappNumber,text);
+  const text=core.message(cart,catalog,payment,commentInput.value,fulfillment),url=core.whatsappUrl(config.whatsappNumber,text);
   preview.value=text;
   dialog.querySelectorAll('[name="order-payment"]').forEach(input=>{input.checked=input.value===payment;});
+  dialog.querySelectorAll('[name="order-fulfillment"]').forEach(input=>{input.checked=input.value===fulfillment;});
   // Long deep links can fail in apps. Always keep the complete text available for copying.
   const tooLong=Boolean(url&&url.length>8000);
   const ready=Boolean(url&&!tooLong&&count);
@@ -97,6 +101,8 @@
  checkout.addEventListener('click',event=>{if(checkout.getAttribute('aria-disabled')==='true')event.preventDefault();});
  copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(preview.value);announce('Текст заказа скопирован.');}catch{dialog.querySelector('details').open=true;preview.focus();preview.select();announce('Выделили текст заказа — скопируйте его вручную.');}});
  addEventListener('storage',event=>{if(event.key!==storageKey)return;try{cart=core.restore(JSON.parse(event.newValue||'{}'),catalog);render();}catch{/* Ignore malformed data from another tab. */}});
+ dialog.querySelectorAll('[name="order-fulfillment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;fulfillment=input.value;try{localStorage.setItem(storageKey+'-fulfillment',fulfillment);}catch{}render();}));
+ commentInput.addEventListener('input',()=>{try{localStorage.setItem(storageKey+'-comment',commentInput.value);}catch{}render();});
  dialog.querySelectorAll('[name="order-payment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;payment=input.value;try{localStorage.setItem(storageKey+'-payment',payment);}catch{}render();}));
  render();
 })();
