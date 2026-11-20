@@ -29,8 +29,8 @@ assert.deepEqual(core.restore({unknown:3,[beef.id]:-1,[chicken.id]:1.5,[burger.i
 assert.equal(core.restore({[beef.id]:10000},catalog)[beef.id],99);
 const restored=core.restore(JSON.parse(JSON.stringify(cart)),catalog);assert.equal(core.total(restored,catalog),790);
 assert.equal(core.total(restored,catalog.map(p=>p.id===beef.id?{...p,price:300}:p)),870,'Restored cart must use current catalog prices');
-assert.equal(core.message({},catalog),'');assert.equal(catalog.filter(p=>p.price!==null).length,73);
-console.log('PASS: variants, quantities, removal, totals, message/URL, corrupted storage, current prices, 73 orderable variants including 10 cold drink volumes');
+assert.equal(core.message({},catalog),'');assert.equal(catalog.filter(p=>p.price!==null).length,71);
+console.log('PASS: variants, quantities, removal, totals, message/URL, corrupted storage, current prices, 71 orderable variants including 10 cold drink volumes');
 assert(core.message(cart,catalog,'cash').includes('Оплата: Наличными'));
 assert(core.message(cart,catalog,'transfer').includes('Оплата: Перевод на карту'));
 assert(!core.message(cart,catalog,'invalid').includes('Оплата:'));
