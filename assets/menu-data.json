@@ -46,6 +46,20 @@
               "price": 200
             }
           ]
+        },
+        {
+          "id": "6146cde6-56a4-4c04-9410-4946120915fc",
+          "name": "Новое блюдо",
+          "description": "",
+          "photo": "/media/c984a644571a4abba17ccac91774c8039f16073878879f8f7b326e9ffe81a1b2.webp",
+          "available": true,
+          "variants": [
+            {
+              "id": "2ec79882-3224-4c3e-a671-2b37e1c5bf61",
+              "label": "",
+              "price": 500
+            }
+          ]
         }
       ]
     },
