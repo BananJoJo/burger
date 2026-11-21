@@ -66,7 +66,8 @@
           "name": "негр",
           "description": "",
           "photo": "/media/f2274626478653dba0b7a51779e708ea2ed534178fada4ed3a36d5f868cbf46e.webp",
-          "available": true,
+          "available": false,
+          "trashed": true,
           "variants": [
             {
               "id": "869a1aea-c4e7-4623-a304-8ef155940f2c",
