@@ -18,16 +18,18 @@
  function lines(cart,catalog){const valid=restore(cart,catalog);return catalog.filter(p=>valid[p.id]).map(p=>({...p,quantity:valid[p.id],subtotal:p.price*valid[p.id]}));}
  function total(cart,catalog){return lines(cart,catalog).reduce((sum,p)=>sum+p.subtotal,0);}
  function count(cart,catalog){return lines(cart,catalog).reduce((sum,p)=>sum+p.quantity,0);}
+ const deliveryPlaces={local:'Мескере-Юрт',argun:'Аргун',tsotsi:'Цоци-Юрт',gaimchig:'Гаймчиг'};
+ function deliveryFee(subtotal,fulfillment,place){return fulfillment==='delivery'&&subtotal>0&&Object.hasOwn(deliveryPlaces,place)?(place==='local'?(subtotal>=500?0:100):300):0;}
  function orderName(p){return String(p.category||'').trim().toLowerCase()==='пиццы'&&!/пицц/i.test(p.name)?'Пицца «'+p.name+'»':p.name;}
- function message(cart,catalog,payment,comment='',fulfillment=''){
+ function message(cart,catalog,payment,comment='',fulfillment='',place=''){
   const entries=lines(cart,catalog);
   if(!entries.length)return '';
-  return ['Ассаляму алейкум! 👋','Хочу сделать заказ в *Sweet Sushi* 🍔','','*Мой заказ:*','',...entries.flatMap((p,i)=>[`${i+1}. *${orderName(p)}${p.description&&!p.name.toLowerCase().includes(p.description.toLowerCase())?' — '+p.description:''}*`,`   *${p.quantity} шт.* · ${money(p.price)} за шт. — *${money(p.subtotal)}*`,'']),`🧾 *Сумма по меню: ${money(total(cart,catalog))}*`,...(['cash','transfer'].includes(payment)?['💳 *Оплата: '+(payment==='cash'?'Наличными':'Перевод на карту')+'*']:[]),...(['delivery','pickup'].includes(fulfillment)?[(fulfillment==='delivery'?'🚚 *Получение: Доставка*':'🛍️ *Получение: Самовывоз*')]:[]),...(String(comment||'').trim()?['','💬 *Комментарий к заказу:*',String(comment).trim().slice(0,500)]:[]),'','Подтвердите, пожалуйста, заказ и итоговую стоимость. Подскажите, когда будет готово и как можно получить заказ. Спасибо! 😊'].join('\n');
+  return ['Ассаляму алейкум! 👋','Хочу сделать заказ в *Sweet Sushi* 🍔','','*Мой заказ:*','',...entries.flatMap((p,i)=>[`${i+1}. *${orderName(p)}${p.description&&!p.name.toLowerCase().includes(p.description.toLowerCase())?' — '+p.description:''}*`,`   *${p.quantity} шт.* · ${money(p.price)} за шт. — *${money(p.subtotal)}*`,'']),`🧾 *Сумма по меню: ${money(total(cart,catalog))}*`,...(['cash','transfer'].includes(payment)?['💳 *Оплата: '+(payment==='cash'?'Наличными':'Перевод на карту')+'*']:[]),...(['delivery','pickup'].includes(fulfillment)?[(fulfillment==='delivery'?'🚚 *Получение: Доставка*':'🛍️ *Получение: Самовывоз*')]:[]),...(fulfillment==='delivery'&&Object.hasOwn(deliveryPlaces,place)?['📍 '+deliveryPlaces[place], '🚚 Доставка: '+(deliveryFee(total(cart,catalog),fulfillment,place)?money(deliveryFee(total(cart,catalog),fulfillment,place)):'бесплатно'), '*Итого с доставкой: '+money(total(cart,catalog)+deliveryFee(total(cart,catalog),fulfillment,place))+'*']:[]),...(String(comment||'').trim()?['','💬 *Комментарий к заказу:*',String(comment).trim().slice(0,500)]:[]),'','Подтвердите, пожалуйста, заказ и итоговую стоимость. Подскажите, когда будет готово и как можно получить заказ. Спасибо! 😊'].join('\n');
  }
  function whatsappUrl(number,text){
   const phone=String(number||'').replace(/[\s()+-]/g,'');
   if(!/^[1-9]\d{7,14}$/.test(phone)||!text)return null;
   return 'https://wa.me/'+phone+'?text='+encodeURIComponent(text);
  }
- return {MAX_QUANTITY,money,restore,setQuantity,lines,total,count,message,whatsappUrl};
+ return {MAX_QUANTITY,money,restore,setQuantity,lines,total,count,deliveryPlaces,deliveryFee,message,whatsappUrl};
 });

@@ -3,14 +3,11 @@
  const core=window.MenuCartCore;
  const catalog=JSON.parse(document.getElementById('menu-catalog').textContent);
  const config=window.MenuOrderingConfig||{};
- const storageKey=config.cartStorageKey||'sweet-sushi-cart-v1';
  const products=new Map(catalog.map(product=>[product.id,product]));
  const sauceInput=document.querySelector('[data-nugget-sauce]');
  const nuggetId=catalog.find(product=>product.name==='Наггетсы')?.id;
  const sauceNames=new Set(['Сырный','Томатный','Мира соус','Чесночный']);
- try{const saved=localStorage.getItem(storageKey+'-nugget-sauce');if(sauceInput&&sauceNames.has(saved))sauceInput.value=saved;}catch{}
- let sauceEnabled=Boolean(sauceInput?.value);
- try{if(localStorage.getItem(storageKey+'-sauce-enabled')==='yes')sauceEnabled=true;}catch{}
+ let sauceEnabled=false;
  const sauceChoice=document.querySelector('#nugget-sauce-choice');
  const sauceButtons=[...document.querySelectorAll('[data-sauce-enabled]')];
  function updateSauceChoice(){
@@ -35,15 +32,10 @@
  const configNote=dialog.querySelector('[data-config-note]');
  const status=document.querySelector('.cart-status');
  let cart={},statusTimer,lastOpener,payment='cash',fulfillment='';
- try{const stored=localStorage.getItem(storageKey+'-payment');if(['cash','transfer'].includes(stored))payment=stored;}catch{} 
- try{commentInput.value=(localStorage.getItem(storageKey+'-comment')||'').slice(0,500);}catch{}
- try{const stored=localStorage.getItem(storageKey+'-fulfillment');if(['delivery','pickup'].includes(stored))fulfillment=stored;}catch{}
  const announce=text=>{clearTimeout(statusTimer);status.textContent=text;statusTimer=setTimeout(()=>{status.textContent='';},2400);};
- try{cart=core.restore(JSON.parse(localStorage.getItem(storageKey)||'{}'),catalog);}catch{announce('Корзина работает, но сохранение на этом устройстве недоступно.');}
- const save=()=>{try{localStorage.setItem(storageKey,JSON.stringify(cart));}catch{announce('Не удалось сохранить корзину. Текущий заказ останется здесь до закрытия страницы.');}};
  const node=(tag,className,text)=>{const el=document.createElement(tag);if(className)el.className=className;if(text!==undefined)el.textContent=text;return el;};
  function action(label,text,handler,disabled=false){const b=node('button','quantity-button',text);b.type='button';b.setAttribute('aria-label',label);b.disabled=disabled;b.addEventListener('click',handler);return b;}
- function change(id,quantity){cart=core.setQuantity(cart,id,quantity,catalog);save();render();}
+ function change(id,quantity){cart=core.setQuantity(cart,id,quantity,catalog);render();}
  function renderLines(){
   const focused=document.activeElement;
   const restoreFocus=focused?.dataset.cartFocus;
@@ -119,7 +111,7 @@
   const id=button.dataset.addProduct;
   const p=products.get(id);
   if(!p)return;
-  cart=core.setQuantity(cart,id,(cart[id]||0)+1,catalog);save();render();
+  change(id,(cart[id]||0)+1);
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&button.animate){
    // Keep background/opacity under CSS control, including hover transitions.
    button.animate([{transform:'scale(1)'},{transform:'scale(.96)'},{transform:'scale(1)'}],{duration:240,easing:'ease-out'});
@@ -133,17 +125,16 @@
  dialog.addEventListener('close',()=>{document.body.classList.remove('cart-is-open');const opener=lastOpener&&!lastOpener.hidden?lastOpener:document.querySelector('.cart-header-button');opener?.focus({preventScroll:true});});
  checkout.addEventListener('click',event=>{if(checkout.getAttribute('aria-disabled')==='true')event.preventDefault();});
  copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(preview.value);announce('Текст заказа скопирован.');}catch{dialog.querySelector('.cart-message-preview').open=true;preview.focus();preview.select();announce('Выделили текст заказа — скопируйте его вручную.');}});
- addEventListener('storage',event=>{if(event.key!==storageKey)return;try{cart=core.restore(JSON.parse(event.newValue||'{}'),catalog);render();}catch{/* Ignore malformed data from another tab. */}});
- dialog.querySelectorAll('[name="order-fulfillment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;fulfillment=input.value;try{localStorage.setItem(storageKey+'-fulfillment',fulfillment);}catch{}render();}));
+ dialog.querySelectorAll('[name="order-fulfillment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;fulfillment=input.value;render();}));
  placeSelect?.addEventListener('change',render);
- sauceInput?.addEventListener('change',()=>{try{localStorage.setItem(storageKey+'-nugget-sauce',sauceInput.value);}catch{}render();});
+ sauceInput?.addEventListener('change',render);
  sauceButtons.forEach(button=>button.addEventListener('click',()=>{
   sauceEnabled=button.dataset.sauceEnabled==='yes';
   updateSauceChoice();
-  try{localStorage.setItem(storageKey+'-sauce-enabled',sauceEnabled?'yes':'no');if(!sauceEnabled){localStorage.removeItem(storageKey+'-nugget-sauce');if(sauceInput)sauceInput.value='';}}catch{}
+  if(!sauceEnabled&&sauceInput)sauceInput.value='';
   render();
  }));
- commentInput.addEventListener('input',()=>{try{localStorage.setItem(storageKey+'-comment',commentInput.value);}catch{}render();});
- dialog.querySelectorAll('[name="order-payment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;payment=input.value;try{localStorage.setItem(storageKey+'-payment',payment);}catch{}render();}));
+ commentInput.addEventListener('input',render);
+ dialog.querySelectorAll('[name="order-payment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;payment=input.value;render();}));
  render();
 })();
