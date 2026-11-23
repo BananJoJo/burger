@@ -68,14 +68,14 @@
           "description": "",
           "photo": "/media/1d697d61939ce60dd8801119fa15aa9840f9fe47c53f17c9d4b5a244e22503dd.webp",
           "available": false,
-          "trashed": true,
           "variants": [
             {
               "id": "0177e824-91f1-44f7-b731-57f9efc1eca6",
               "label": "",
               "price": 1
             }
-          ]
+          ],
+          "trashed": true
         }
       ]
     },
@@ -635,7 +635,7 @@
           "id": "dish-939b351c6e7b24f1",
           "name": "Цунами",
           "description": "Острый ролл",
-          "photo": "",
+          "photo": "/media/ac1d7d3f97c2463d89f9dfd038e5580c51ab6efe7c1c8e1f74ffe2ee59d3a694.webp",
           "available": true,
           "variants": [
             {
