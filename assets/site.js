@@ -1,7 +1,14 @@
 // Public menu is already in HTML. No requests to the admin server are made here.
 (async()=>{
  const own=document.currentScript,base=new URL('./',own.src),revision=own.dataset.revision||'1';
- const load=file=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL(file,base).href+'?v='+revision;script.onload=resolve;script.onerror=reject;document.body.append(script);});
+ const load=file=>new Promise((resolve,reject)=>{
+  const script=document.createElement('script');
+  script.async=false; // Download in parallel and execute in insertion order.
+  script.src=new URL(file,base).href+'?v='+revision;
+  script.onload=resolve;
+  script.onerror=reject;
+  document.body.append(script);
+ });
  const links=[...document.querySelectorAll('nav a')];
  const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.hash==='#'+entry.target.id));},{rootMargin:'-5% 0px -65% 0px'});
  document.querySelectorAll('.menu-section').forEach(section=>observer.observe(section));
@@ -70,5 +77,8 @@
   if(dock){new MutationObserver(schedule).observe(dock,{attributes:true,attributeFilter:['hidden']});if(typeof ResizeObserver!=='undefined')new ResizeObserver(schedule).observe(dock);}
   update();
  }
- await load('motion.js');await load('cart-core.js');await load('cart.js');
+ const cartCore=load('cart-core.js');
+ const cart=load('cart.js');
+ void load('motion.js').catch(error=>console.warn('Menu animation unavailable',error));
+ await Promise.all([cartCore,cart]);
 })().catch(()=>{const status=document.querySelector('.cart-status');if(status)status.textContent='Обновите страницу, чтобы продолжить.';});
