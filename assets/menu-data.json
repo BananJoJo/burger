@@ -67,7 +67,8 @@
           "name": "Новое блюдо",
           "description": "",
           "photo": "/media/1d697d61939ce60dd8801119fa15aa9840f9fe47c53f17c9d4b5a244e22503dd.webp",
-          "available": true,
+          "available": false,
+          "trashed": true,
           "variants": [
             {
               "id": "0177e824-91f1-44f7-b731-57f9efc1eca6",
