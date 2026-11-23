@@ -89,3 +89,8 @@ html.categories-open{overflow:hidden}
  .bottom-navigation:not(.show-shortcuts) .mobile-categories-button,.bottom-navigation:not(.show-shortcuts) .back-to-menu{width:0;min-width:0;margin:0;padding:0;border-width:0;overflow:hidden;opacity:0;pointer-events:none;box-shadow:none;transform:translateY(12px) scale(.9);white-space:nowrap}
  .bottom-navigation .mobile-categories-button,.bottom-navigation .back-to-menu{white-space:nowrap;overflow:hidden}
 }
+
+/* The menu fades behind the floating actions without joining their buttons. */
+@media(max-width:1000px){
+ .bottom-navigation::before{content:'';position:absolute;z-index:-1;pointer-events:none;left:50%;width:100vw;transform:translateX(-50%);top:-36px;bottom:calc(0px - max(14px,env(safe-area-inset-bottom)));background:linear-gradient(to bottom,#f5eddf00 0%,#f5eddfed 38%,#f5eddf 66%)}
+}
