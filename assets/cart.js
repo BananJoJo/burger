@@ -57,13 +57,10 @@
   }
   if(restoreFocus){const replacement=[...list.querySelectorAll('[data-cart-focus]')].find(el=>el.dataset.cartFocus===restoreFocus);if(replacement&&!replacement.disabled)replacement.focus({preventScroll:true});else if(dialog.open)dialog.querySelector('[data-close-cart]').focus({preventScroll:true});}
  }
- function render(){
-  const count=core.count(cart,catalog),total=core.money(core.total(cart,catalog));
-  document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=String(count));
-  document.querySelectorAll('[data-cart-total]').forEach(el=>el.textContent=total);
-  dock.hidden=count===0;empty.hidden=count>0;copy.disabled=count===0;
+ function renderCheckout(count,subtotal){
+  empty.hidden=count===0;copy.disabled=count===0;
   renderLines();
-  const place=placeSelect?.value||'',subtotal=core.total(cart,catalog),fee=core.deliveryFee(subtotal,fulfillment,place);
+  const place=placeSelect?.value||'',fee=core.deliveryFee(subtotal,fulfillment,place);
   if(deliveryPlace)deliveryPlace.hidden=fulfillment!=='delivery';
   const withDelivery=fulfillment==='delivery'&&count>0;
   if(deliveryTotal){deliveryTotal.hidden=!withDelivery;deliveryTotal.textContent=withDelivery?(fee?'Доставка: '+core.money(fee):'Доставка бесплатно'):'';deliveryTotal.classList.toggle('is-free',withDelivery&&fee===0);}
@@ -82,6 +79,13 @@
   const missingNumber=!core.whatsappUrl(config.whatsappNumber,'check');
   configNote.hidden=!missingNumber&&!tooLong&&!config.isTest;
   configNote.textContent=tooLong?'Заказ получился длинным. Скопируйте текст и отправьте его в чат вручную.':missingNumber?'WhatsApp заведения пока не настроен. Заказ можно собрать и скопировать.':config.isTest?'Тестовый режим: сообщение откроется на проверочном номере.':'';
+ }
+ function render(opening=false){
+  const count=core.count(cart,catalog),subtotal=core.total(cart,catalog),total=core.money(subtotal);
+  document.querySelectorAll('[data-cart-count]').forEach(el=>el.textContent=String(count));
+  document.querySelectorAll('[data-cart-total]').forEach(el=>el.textContent=total);
+  dock.hidden=count===0;
+  if(opening===true||dialog.open)renderCheckout(count,subtotal);
   document.querySelectorAll('[data-add-product]').forEach(button=>{
    const qty=cart[button.dataset.addProduct]||0;
    button.disabled=qty>=core.MAX_QUANTITY;
@@ -119,7 +123,7 @@
   }
   announce(p.name+' — в корзине '+cart[id]+' шт.');
  }));
- document.querySelectorAll('[data-open-cart]').forEach(button=>button.addEventListener('click',()=>{lastOpener=button;render();dialog.showModal();document.body.classList.add('cart-is-open');}));
+ document.querySelectorAll('[data-open-cart]').forEach(button=>button.addEventListener('click',()=>{if(dialog.open)return;lastOpener=button;render(true);dialog.showModal();document.body.classList.add('cart-is-open');}));
  dialog.querySelector('[data-close-cart]').addEventListener('click',()=>dialog.close());
  dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
  dialog.addEventListener('close',()=>{document.body.classList.remove('cart-is-open');const opener=lastOpener&&!lastOpener.hidden?lastOpener:document.querySelector('.cart-header-button');opener?.focus({preventScroll:true});});
@@ -137,4 +141,5 @@
  commentInput.addEventListener('input',render);
  dialog.querySelectorAll('[name="order-payment"]').forEach(input=>input.addEventListener('change',()=>{if(!input.checked)return;payment=input.value;render();}));
  render();
+ document.dispatchEvent(new Event('sweet-sushi-cart-ready'));
 })();

@@ -81,4 +81,8 @@
  const cart=load('cart.js');
  void load('motion.js').catch(error=>console.warn('Menu animation unavailable',error));
  await Promise.all([cartCore,cart]);
-})().catch(()=>{const status=document.querySelector('.cart-status');if(status)status.textContent='Обновите страницу, чтобы продолжить.';});
+})().catch(()=>{
+ document.dispatchEvent(new Event('sweet-sushi-cart-failed'));
+ const status=document.querySelector('.cart-status');
+ if(status)status.textContent='Корзина не загрузилась. Обновите страницу.';
+});

@@ -62,33 +62,19 @@
  button?.addEventListener('click', () => {paused = !paused;button.setAttribute('aria-pressed', String(paused));button.textContent=paused?'Продолжить анимацию':'Приостановить анимацию';updateMotion();});
  document.addEventListener('visibilitychange', updateMotion);
  new IntersectionObserver(entries => {onScreen=entries[0].isIntersecting;updateMotion();}).observe(burger);
- const animations = new Set();
- const activeReveals = new WeakMap();
- const reveal = (el, delay=0) => {
-  // Prices and order controls must remain visible and clickable during fast scrolling.
-  if(reduced.matches || !el.animate || el.matches('.item-order,.drink-variants')) return;
-  activeReveals.get(el)?.cancel();
-  const stableTarget=el.matches('.menu-section h2,aside,.item-order');
-  const imageScene=el.matches('.hero>div:nth-child(2)');
-  const anim=el.animate([{opacity:0,transform:stableTarget?'none':'translateY(38px)',filter:imageScene?'none':'blur(3px)'},{opacity:1,transform:stableTarget?'none':'translateY(0)',filter:imageScene?'none':'blur(0)'}],{duration:850,delay,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});
-  activeReveals.set(el,anim);
-  animations.add(anim);anim.finished.then(()=>animations.delete(anim)).catch(()=>animations.delete(anim));
- };
- const heroParts=[...document.querySelectorAll('.hero h1,.hero p,.hero .cta,.hero>div:nth-child(2)')];
- document.querySelectorAll('header').forEach(el=>reveal(el));
- const entered=new WeakSet();
- const sections = new IntersectionObserver(entries=>{
-  let index=0;
-  for(const entry of entries){
-   if(!entry.isIntersecting){entered.delete(entry.target);continue;}
-   if(entered.has(entry.target))continue;
-   entered.add(entry.target);
-   const targets=entry.target===hero?heroParts:entry.target.matches('.item')?[...entry.target.children].filter(el=>!el.matches('.item-order,.drink-variants')):[entry.target];
-   targets.forEach((el,i)=>reveal(el,Math.min((index+i)*70,280)));
-   index++;
+ // The cover animates once. Menu rows stay in place during scrolling.
+ const coverAnimations = [];
+ if(!reduced.matches){
+  for(const element of document.querySelectorAll('.hero h1,.hero .cta')){
+   coverAnimations.push(element.animate([{opacity:.65},{opacity:1}],{duration:250,easing:'ease-out'}));
   }
- },{threshold:0});
- document.querySelectorAll('aside,.menu-section h2,.item,.hero').forEach(el=>sections.observe(el));
- reduced.addEventListener('change',()=>{if(reduced.matches){stopNavigation();for(const animation of animations)animation.cancel();animations.clear();}updateMotion();});
+ }
+ reduced.addEventListener('change',()=>{
+  if(reduced.matches){
+   stopNavigation();
+   for(const animation of coverAnimations)animation.cancel();
+  }
+  updateMotion();
+ });
  updateMotion();
 })();
