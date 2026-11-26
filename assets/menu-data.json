@@ -15,7 +15,7 @@
             {
               "id": "867953eff9bd4943",
               "label": "",
-              "price": 270
+              "price": 330
             }
           ]
         },
@@ -29,7 +29,7 @@
             {
               "id": "eea289c401bb33a0",
               "label": "",
-              "price": 270
+              "price": 330
             }
           ]
         },
@@ -68,14 +68,14 @@
           "description": "",
           "photo": "/media/1d697d61939ce60dd8801119fa15aa9840f9fe47c53f17c9d4b5a244e22503dd.webp",
           "available": false,
+          "trashed": true,
           "variants": [
             {
               "id": "0177e824-91f1-44f7-b731-57f9efc1eca6",
               "label": "",
               "price": 1
             }
-          ],
-          "trashed": true
+          ]
         }
       ]
     },
@@ -93,7 +93,7 @@
             {
               "id": "0662b5171fcac281",
               "label": "",
-              "price": 260
+              "price": 350
             }
           ]
         },
@@ -107,7 +107,7 @@
             {
               "id": "db3220c7ccd4db21",
               "label": "",
-              "price": 260
+              "price": 350
             }
           ]
         }
@@ -141,7 +141,7 @@
             {
               "id": "9ec8dc0521484ea8",
               "label": "",
-              "price": 150
+              "price": 140
             }
           ]
         },
@@ -197,7 +197,7 @@
             {
               "id": "8effbc0630448b62",
               "label": "",
-              "price": 200
+              "price": 220
             }
           ]
         },
@@ -279,7 +279,7 @@
             {
               "id": "63689a9e81ea06f1",
               "label": "",
-              "price": 130
+              "price": 140
             }
           ]
         },
@@ -321,7 +321,7 @@
             {
               "id": "872e215e7ec58fa3",
               "label": "",
-              "price": 300
+              "price": 350
             }
           ]
         },
@@ -335,7 +335,7 @@
             {
               "id": "807c814a7f756529",
               "label": "",
-              "price": 300
+              "price": 350
             }
           ]
         },
@@ -349,7 +349,7 @@
             {
               "id": "964f36b6770d6398",
               "label": "",
-              "price": 300
+              "price": 320
             }
           ]
         },
@@ -363,7 +363,7 @@
             {
               "id": "8c022a6511943f1e",
               "label": "",
-              "price": 200
+              "price": 250
             }
           ]
         }
@@ -529,7 +529,7 @@
             {
               "id": "e4310600014e2c3a",
               "label": "",
-              "price": 300
+              "price": 350
             }
           ]
         },
@@ -571,7 +571,7 @@
             {
               "id": "4f33369f63888d5f",
               "label": "",
-              "price": 350
+              "price": 370
             }
           ]
         },
